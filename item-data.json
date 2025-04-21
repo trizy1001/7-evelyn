@@ -1,0 +1,123 @@
+{
+    "categories": [
+        {
+            "name": "All",
+            "category": "",
+            "image": "donuts/donut_3.png"
+        },
+        {
+            "name": "Biscuit",
+            "category": "biscuit",
+            "image": "donuts/donut_item.png"
+        },
+        {
+            "name": "Donuts",
+            "category": "Donut",
+            "image": "donuts/donut_1.png"
+        },
+        {
+            "name": "Alak",
+            "category": "alak",
+            "image": "donuts/donut_4.png"
+        }
+    ],
+    "items": [
+        {
+            "name": "Donuts",
+            "id": 1,
+            "value": 10.99,
+            "stock_quantity": 100,
+            "category": "Donut",
+            "image": "donuts/donut_1.png"
+        },
+        {
+            "name": "Item 2 dawdawdwa",
+            "id": 2,
+            "value": 15.49,
+            "stock_quantity": 50,
+            "category": "Donut",
+            "image": "donuts/donut_2.png"
+        },
+        {
+            "name": "Item 2",
+            "id": 2,
+            "value": 15.49,
+            "stock_quantity": 50,
+            "category": "alak",
+            "image": "donuts/donut_3.png"
+        },
+        {
+            "name": "Item 2",
+            "id": 2,
+            "value": 15.49,
+            "stock_quantity": 50,
+            "category": "alak",
+            "image": "donuts/donut_4.png"
+        },
+        {
+            "name": "Item 2",
+            "id": 2,
+            "value": 15.49,
+            "stock_quantity": 50,
+            "category": "alak",
+            "image": "data/assets/alak.jpg"
+        },
+        {
+            "name": "Item 2",
+            "id": 2,
+            "value": 15.49,
+            "stock_quantity": 50,
+            "category": "alak",
+            "image": "data/assets/alak.jpg"
+        },
+        {
+            "name": "Item 2",
+            "id": 2,
+            "value": 15.49,
+            "stock_quantity": 50,
+            "category": "alak",
+            "image": "data/assets/alak.jpg"
+        },
+        {
+            "name": "Item 2",
+            "id": 2,
+            "value": 15.49,
+            "stock_quantity": 50,
+            "category": "alak",
+            "image": "data/assets/alak.jpg"
+        },
+        {
+            "name": "Item 2",
+            "id": 2,
+            "value": 15.49,
+            "stock_quantity": 50,
+            "category": "alak",
+            "image": "data/assets/alak.jpg"
+        },
+        {
+            "name": "Item 2",
+            "id": 2,
+            "value": 15.49,
+            "stock_quantity": 50,
+            "category": "alak",
+            "image": "data/assets/alak.jpg"
+        },
+        {
+            "name": "Item 2",
+            "id": 2,
+            "value": 15.49,
+            "stock_quantity": 50,
+            "category": "alak",
+            "image": "data/assets/alak.jpg"
+        },
+        {
+            "name": "Item 2",
+            "id": 2,
+            "value": 15.49,
+            "stock_quantity": 50,
+            "category": "alak",
+            "image": "data/assets/alak.jpg"
+        }
+
+    ]
+}
