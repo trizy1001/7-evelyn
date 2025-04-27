@@ -182,22 +182,7 @@ class ui_panels:
         
         order_summ_rect = self.order_summ.get_rect(topleft=(x + 835, y + 170))
         pg.draw.rect(window, self.container_color, order_summ_rect, border_radius=20)
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
 #=====================================================================================================================
 #=====================**DTO MAG LO-LLOAD NG MGA IMAGE FOR ITEMS**=====================================================
     def items(self, category=None):
@@ -331,16 +316,7 @@ class ui_panels:
                 self.search_text += event.unicode
                 
 #======================================================================================================================               
-#=====================SAME LANG DIN TO SAYO VARIABLES LANG TALGA NAG IBA HAHHAHAHHAHA==================================
-    def scroll_pad(self, event):
-        if event.type == pg.MOUSEBUTTONDOWN:
-            if event.button == 4:  # Scroll up
-                self.scroll_y -= 50
-            elif event.button == 5:  # Scroll down
-                self.scroll_y += 50
 
-        if self.scroll_y >= 0:
-            self.scroll_y = 0
 
 #======================================================================================================================
 #======== **DTO MAG LALAGAY SA NG MGA I-D-DRAW SA WINDOW** ============================================================
@@ -364,6 +340,17 @@ class ui_panels:
         search_surf = self.small_font.render(self.search_text, True, (255, 255, 255))
         window.blit(search_surf, (self.input_rect.x + 10, self.input_rect.y + 10))
         
+#======================================================================================================================
+#=====================SAME LANG DIN TO SAYO VARIABLES LANG TALGA NAG IBA HAHHAHAHHAHA==================================
+def scroll_pad(self, event):
+    if event.type == pg.MOUSEBUTTONDOWN:
+        if event.button == 4:  # Scroll up
+            self.scroll_y -= 100
+        elif event.button == 5:  # Scroll down
+            self.scroll_y += 100
+
+    if self.scroll_y >= 0:
+        self.scroll_y = 0        
         
 #======================================================================================================================
 #===================== **EVENTS** ==================================================================================
@@ -379,15 +366,15 @@ def event_handler():
 
             pg.quit()
             exit()
-
-        panel.scroll_pad(event)
+            
         panel.search_bar(event)
-        
+        scroll_pad(panel, event)
         
 #======================================================================================================================
 #===================== **MAIN LOOP** ==================================================================================
 while True:
     clock.tick(60)
+    
     event_handler() 
     panel.draw()
     panel.draw_header()
@@ -396,9 +383,6 @@ while True:
     panel.right_panel()
     panel.items(panel.selected_category)
     panel.left_item_category()
-    # panel.view_cart()
-    
-    # panel.cart_button()
 
     pg.display.update()
-    
+
