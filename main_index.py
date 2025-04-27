@@ -28,7 +28,7 @@ class ui_panels:
 
         self.left_pnl = pg.Surface((width - 150, height), pg.RESIZABLE)
         self.left_pnl.fill(self.color)
-        self.left_pnl_rect = self.left_pnl.get_rect(topleft=(x, y + 70))
+        self.left_pnl_rect = self.left_pnl.get_rect(topleft=(x, y + 65))
         
         self.menu = pg.image.load("menu_icon.png").convert_alpha()
         self.menu = pg.transform.scale(self.menu, (100, 100))
@@ -101,20 +101,14 @@ class ui_panels:
         self.selected_category = None 
         
 #=====================================================================================================================
-#=====================SAME LANG DIN TO SAYO VARIABLES LANG TALGA NAG IBA HAHHAHAHHAHA==================
-    def scroll_pad(self, event):
-        if event.type == pg.MOUSEBUTTONDOWN:
-            if event.button == 4:  # Scroll up
-                self.scroll_y -= 50
-            elif event.button == 5:  # Scroll down
-                self.scroll_y += 50
 
-        if self.scroll_y >= 0:
-            self.scroll_y = 0
-            
 #=====================================================================================================================
-#=====================ITO YUNG NAME NG SYSTEM=======================================
+#===================== **TITLE LANG TO NG SYSTEM HAHAHHHAHAAHAAH** =======================================
     def draw_header(self):
+        pg.draw.rect(window, self.color, self.header_pnl_rect, border_bottom_right_radius=20)
+        self.header_pnl_rect = self.header_pnl.get_rect(topleft=(x, y))
+        self.header_pnl.fill(self.color)
+        
         self.title = self.title_font.render("7-EVELYN", True, "#ffffff")
         self.title_rect = self.title.get_rect(center=(x + 150, y + 30))
 
@@ -130,15 +124,10 @@ class ui_panels:
         window.blit(self.logo, self.logo_rect)
         window.blit(pro_text, pro_text_rect)
 
-        
-        self.header_pnl = pg.Surface((width + 615, 60))   
-        self.header_pnl_rect = self.header_pnl.get_rect(topleft=(x, y))
-        pg.draw.rect(window, self.color, self.header_pnl_rect, border_bottom_left_radius=20)
-        self.header_pnl.fill(self.color)
-        window.blit(self.header_pnl, self.header_pnl_rect)
 #=====================================================================================================================
-#=====================GINAYA KO LNG YUNG FUNCTIONS MO KASO YUNG MGA VARIABLES INIBA KO LANG HAHAHAHHAHAHA=============
+#===================== **DTO YUNG BEHAVIOR NI LEFT PANEL** ===========================================================
     def left_panel(self):
+        self.left_pnl_rect = self.left_pnl.get_rect(topleft=(x, y + 65))
         mouse_pos = pg.mouse.get_pos()
         if self.left_pnl_rect.collidepoint(mouse_pos) and pg.mouse.get_pressed()[0]:
             if not self.trigger_exp:
@@ -156,15 +145,10 @@ class ui_panels:
             self.frame_motion += self.animation
             if self.frame_motion >= 130:
                 self.frame_motion = 130
-                
-        self.left_pnl = pg.Surface((self.frame_motion + 100, height))
-        self.left_pnl.fill(self.color)
-        
-        
-        
+#===================== **NILIGAY KO LANG YUNG MENU BUTTON SA LEFT PANEL TAS NILGAY KO LANG DIN YUNG MOVEMENT NI LEFT PANEL** =============                
     def menu_btn(self):
         mx, my = pg.mouse.get_pos()
-        menu_rect = self.menu.get_rect(topleft=(x - 10, y - 20))
+        menu_rect = self.menu.get_rect(topleft=(x - 5, y + 55))
         if menu_rect.collidepoint(mx, my):
             if pg.mouse.get_pressed()[0]:
                 if not self.trigger_exp:
@@ -183,20 +167,15 @@ class ui_panels:
             self.frame_motion += self.animation
             if self.frame_motion >= 130:
                 self.frame_motion = 130
-        
-        
-        
-        
-        
-        
-        
-        
+
         self.left_pnl = pg.Surface((self.frame_motion + 100, height))
-        pg.draw.rect(window, self.color, self.left_pnl_rect, border_radius=20)
+        pg.draw.rect(window, self.color, self.left_pnl_rect, border_top_right_radius=20)
+        
         self.left_pnl.fill(self.color)
-        self.left_pnl.blit(self.menu, menu_rect)  
+        window.blit(self.menu, menu_rect) 
+
 #=====================================================================================================================
-#=====================HERE DIN====================================================
+#=====================**DTO MAG LO-LLOAD NG MGA IMAGE FOR ITEMS**=====================================================
     def items(self, category=None):
         items_to_display = self.data_items['items']
         if category:
@@ -215,7 +194,9 @@ class ui_panels:
 
             item_card = pg.Surface((card_width, card_height))
             item_card.fill(self.container_color)
-            window.blit(item_card, (x_offset + 50, y_offset + self.scroll_y))
+            item_card_rect = item_card.get_rect(topleft=(x_offset + 50, y_offset + self.scroll_y))
+            pg.draw.rect(window, self.container_color, item_card_rect, border_radius=10)
+            # window.blit(item_card, (x_offset + 50, y_offset + self.scroll_y))
 
             try:
                 item_image = pg.image.load(item["image"]).convert_alpha()
@@ -232,7 +213,8 @@ class ui_panels:
             add_btn = pg.Surface((card_width - 20, 30))
             add_btn.fill(self.btn_color)
             btn_rect = add_btn.get_rect(topleft=(x_offset + 60, y_offset + self.scroll_y + card_height - 40))
-            window.blit(add_btn, btn_rect.topleft)
+            pg.draw.rect(window, self.btn_color, btn_rect, border_radius=10)
+            # window.blit(add_btn, btn_rect.topleft)
 
             btn_text = self.medium_font.render("Add to Cart", True, self.color)
             window.blit(btn_text, (btn_rect.x + 20, btn_rect.y + 7))
@@ -247,7 +229,7 @@ class ui_panels:
             x_offset += card_width + card_spacing
 
 #=====================================================================================================================
-#=====================PATI DTO HAHAHHAHAHHA======================================
+#=====================ADD TO CART FUNCTIONS===========================================================================
     def cart_item(self, item):
         try:
             with open('user_data.json', 'r') as file:
@@ -258,64 +240,16 @@ class ui_panels:
         with open('user_data.json', 'w') as file:
             json.dump(cart_data, file, indent=4)
             
-    # def view_cart(self):
-    #     if not self.cart_visible:
-    #         return
-    #     try:
-    #         with open('user_data.json', 'r') as file:
-    #             cart_data = json.load(file)
-    #     except FileNotFoundError:
-    #         cart_data = []
+    def view_cart(self):
+        if not self.cart_visible:
+            return
+        try:
+            with open('user_data.json', 'r') as file:
+                cart_data = json.load(file)
+        except FileNotFoundError:
+            cart_data = []
 
-    #     x, y = 0, 100
-    #     total = 0 
-    #     for item in cart_data:
-    #         name = self.small_font.render(item['name'], True, (0, 0, 0))
-    #         price = self.small_font.render(f"${item['value']}", True, (0, 0, 0))
-    #         self.order_summ.blit(name, (x + 5, y))
-    #         self.order_summ.blit(price, (x + 100, y))
-        
-    #         y += 30
-    #         total += float(item['value'])
-
-    #     total_txt = self.medium_font.render(f"Total: ${total:.2f}", True, (0, 0, 0))
-    #     self.order_summ.blit(total_txt, (x, 270))
-        
-        
-    #     with open('user_data.json', 'w') as file:  
-    #         json.dump([], file)
-            
-    #     order_summ_rect = self.order_summ.get_rect(topleft=(x + 10, y - 50))
-    #     self.right_pnl.blit(self.order_summ, order_summ_rect)
-
-    # def cart_button(self):
-    #     if self.cart_visible:
-    #         if self.cart_visible:
-    #             self.view_cart_btn = pg.transform.scale(self.view_cart_btn, (190, 50))
-    #             self.view_cart_btn_rect = self.view_cart_btn.get_rect(topleft=(x + 830, 500))
-    #     else:   
-    #         self.view_cart_btn = pg.transform.scale(self.view_cart_btn, (190, 70))
-    #         self.view_cart_btn_rect = self.view_cart_btn.get_rect(topleft=(x + 830, 500))
-            
-    #     if self.view_cart_btn_rect.collidepoint(pg.mouse.get_pos()):
-    #         if pg.mouse.get_pressed()[0] and not self.click:
-    #             self.cart_visible = True
-    #             print("CLICK")
-    #     else:
-    #         self.cart_visible = False
-    #         print("CLICK")
-            
-    #     window.blit(self.view_cart_btn, self.view_cart_btn_rect)
-
-    
-    
-    
-    
-    
-    
-
-            
-
+# =====================================================================================================================
     def left_item_category(self):
         y_offset = 150
         item_w = 60
@@ -349,15 +283,9 @@ class ui_panels:
         self.frame_motion += self.animation
         if self.trigger_exp and self.frame_motion >= 255:
             self.frame_motion = 255
-            
-            
-            
-            
-    
-        
-        
-#=====================================================================================================================
-#=====================DTO SINEACH KO LANG SYA PANO MAG LAGAY NG SEARCH BAR THEN I-NEMPLEMENT KO LANG ================
+
+#======================================================================================================================
+#=====================SEARCH BAR=======================================================================================
     def search_bar(self, event):
         self.input_rect.centerx = 650
         self.input_rect.centery = 130
@@ -377,9 +305,21 @@ class ui_panels:
                 print("Search for:", self.search_text)
             else:
                 self.search_text += event.unicode
+                
+#======================================================================================================================               
+#=====================SAME LANG DIN TO SAYO VARIABLES LANG TALGA NAG IBA HAHHAHAHHAHA==================================
+    def scroll_pad(self, event):
+        if event.type == pg.MOUSEBUTTONDOWN:
+            if event.button == 4:  # Scroll up
+                self.scroll_y -= 50
+            elif event.button == 5:  # Scroll down
+                self.scroll_y += 50
 
-#=====================================================================================================================
-#=====================SO IN CONCLUSION GINAYA KO LANG YUNG SAYO, MAY MGA NA-DAGDAG LANG NA VARIABLES AND NA IBA======
+        if self.scroll_y >= 0:
+            self.scroll_y = 0
+            
+#======================================================================================================================
+#=====================SO IN CONCLUSION GINAYA KO LANG YUNG SAYO, MAY MGA NA-DAGDAG LANG NA VARIABLES AND NA IBA========
     def draw(self):
         
         # window.blit(self.left_pnl, (x, y + 65))
@@ -405,8 +345,8 @@ class ui_panels:
         
         
         
-        
-        
+#======================================================================================================================
+#===================== **EVENTS** ==================================================================================
 panel = ui_panels()
 
 def event_handler():
@@ -424,9 +364,10 @@ def event_handler():
         panel.search_bar(event)
         
         
-# main loop
+#======================================================================================================================
+#===================== **MAIN LOOP** ==================================================================================
 while True:
-    clock.tick()
+    clock.tick(60)
     event_handler() 
     panel.draw()
     panel.draw_header()

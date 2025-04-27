@@ -8,7 +8,7 @@
         {
             "name": "Biscuit",
             "category": "biscuit",
-            "image": "donuts/donut_item.png"
+            "image": "biscuits/biscuit_1.png"
         },
         {
             "name": "Donuts",
@@ -18,7 +18,7 @@
         {
             "name": "Alak",
             "category": "alak",
-            "image": "donuts/donut_4.png"
+            "image": "alaks/alak_category.png"
         }
     ],
     "items": [
@@ -40,7 +40,7 @@
         },
         {
             "name": "Item 2",
-            "id": 2,
+            "id": 3,
             "value": 15.49,
             "stock_quantity": 50,
             "category": "alak",
@@ -48,7 +48,7 @@
         },
         {
             "name": "Item 2",
-            "id": 2,
+            "id": 4,
             "value": 15.49,
             "stock_quantity": 50,
             "category": "alak",
@@ -56,7 +56,7 @@
         },
         {
             "name": "Item 2",
-            "id": 2,
+            "id": 5,
             "value": 15.49,
             "stock_quantity": 50,
             "category": "alak",
@@ -64,7 +64,7 @@
         },
         {
             "name": "Item 2",
-            "id": 2,
+            "id": 6,
             "value": 15.49,
             "stock_quantity": 50,
             "category": "alak",
@@ -72,51 +72,67 @@
         },
         {
             "name": "Item 2",
-            "id": 2,
+            "id": 7,
             "value": 15.49,
             "stock_quantity": 50,
             "category": "alak",
             "image": "data/assets/alak.jpg"
         },
         {
-            "name": "Item 2",
-            "id": 2,
+            "name": "Biscuit 2",
+            "id": 8,
             "value": 15.49,
             "stock_quantity": 50,
-            "category": "alak",
-            "image": "data/assets/alak.jpg"
+            "category": "biscuit",
+            "image": "biscuits/biscuit_4.png"
         },
         {
-            "name": "Item 2",
-            "id": 2,
+            "name": "Biscuit",
+            "id": 9,
             "value": 15.49,
             "stock_quantity": 50,
-            "category": "alak",
-            "image": "data/assets/alak.jpg"
+            "category": "biscuit",
+            "image": "biscuits/biscuit_3.png"
         },
         {
-            "name": "Item 2",
-            "id": 2,
+            "name": "cookies",
+            "id": 10,
             "value": 15.49,
             "stock_quantity": 50,
-            "category": "alak",
-            "image": "data/assets/alak.jpg"
+            "category": "biscuit",
+            "image": "biscuits/biscuit_2.png"
         },
         {
-            "name": "Item 2",
-            "id": 2,
+            "name": "oreo",
+            "id": 11,
             "value": 15.49,
             "stock_quantity": 50,
-            "category": "alak",
-            "image": "data/assets/alak.jpg"
+            "category": "biscuit",
+            "image": "biscuits/biscuit_1.png"
         },
         {
-            "name": "Item 2",
-            "id": 2,
+            "name": "tequilla",
+            "id": 12,
             "value": 15.49,
             "stock_quantity": 50,
             "category": "alak",
-            "image": "data/assets/alak.jpg"
+            "image": "alaks/alak_3.png"
+        },
+        {
+            "name": "wiskey",
+            "id": 13,
+            "value": 15.49,
+            "stock_quantity": 50,
+            "category": "alak",
+            "image": "alaks/alak_2.png"
+        },
+        {
+            "name": "beer",
+            "id": 14,
+            "value": 15.49,
+            "stock_quantity": 50,
+            "category": "alak",
+            "image": "alaks/alak_1.png"
         }
 
     ]
