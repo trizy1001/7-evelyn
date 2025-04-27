@@ -8,10 +8,15 @@ pg.font.init()
 
 window = pg.display.set_mode((1024, 600), pg.RESIZABLE)
 pg.display.set_caption("Evelyn")
+pg.display.set_icon(pg.image.load("logo1.jpg"))
 
+# =====================================================================================================================
+#===================== **X AND Y AXIS / WIDTH AND HEIGHT LANG NMN TO** ================================================
 x, y = 0, 0
 width, height = 200, 600
 
+#=====================================================================================================================
+#===================== **MGA VARIABLES** =============================================================================
 class ui_panels:
     def __init__(self):
         # Colors
@@ -36,31 +41,20 @@ class ui_panels:
 
         self.right_pnl = pg.Surface((width + 795, height), pg.RESIZABLE)
         self.right_pnl.fill(self.color)
-        
-
-        # dto nmn i-desiplay yubg Product 
-        self.products_container = pg.Surface((width - 70, height - 500))  
-        self.products_container.fill(self.container_color)
+        self.right_pnl_rect = self.right_pnl.get_rect(topleft=(x + 824, y))
 
         # for Buttons nmn to
-        self.order_btn = pg.image.load("buttons/cart_button.png").convert_alpha()
-        
-        self.pay_btn = pg.image.load("buttons/pay_btn.png").convert_alpha()
-        self.pay_btn = pg.transform.scale(self.pay_btn, (190, 40))
-        self.pay_rect = self.pay_btn.get_rect(topleft=(x, 460))
-        
-        
-        self.view_cart_btn = pg.image.load("buttons/view_cart_btn.png").convert_alpha()
-        self.view_cart_btn = pg.transform.scale(self.view_cart_btn, (190, 50))
-        self.view_cart_btn_rect = self.view_cart_btn.get_rect(topleft=(x, 500))
-        
-        
+        self.pay_btn_rect = pg.Rect(835, 480, 180, 40)
+        self.view_cart_btn_rect = pg.Rect(835, 530, 180, 40)
         
         
         # mga Icons 
         self.settings = pg.image.load("icons/settings_icon.png").convert_alpha()
+        self.settings_rect = self.settings.get_rect(topleft=(x + 950, y))
+        
         self.user = pg.image.load("icons/user_icon.png").convert_alpha()
-
+        self.user_rect = self.user.get_rect(topleft=(x + 900, y + 70))
+        
         # mga Fonts
         self.title_font = pg.font.SysFont("Arial", 32)
         self.pro_font = pg.font.SysFont("Arial", 50)
@@ -92,7 +86,7 @@ class ui_panels:
         self.click = False
         self.selected_category = None
         
-        self.order_summ = pg.Surface((width - 20, height - 200))
+        self.order_summ = pg.Surface((width - 20, height - 300))
         self.order_summ.fill(self.container_color)
 
         with open('item-data.json', 'r') as file:
@@ -103,7 +97,7 @@ class ui_panels:
 #=====================================================================================================================
 
 #=====================================================================================================================
-#===================== **TITLE LANG TO NG SYSTEM HAHAHHHAHAAHAAH** =======================================
+#===================== **TITLE LANG TO NG SYSTEM HAHAHHHAHAAHAAH** ===================================================
     def draw_header(self):
         pg.draw.rect(window, self.color, self.header_pnl_rect, border_bottom_right_radius=20)
         self.header_pnl_rect = self.header_pnl.get_rect(topleft=(x, y))
@@ -174,6 +168,36 @@ class ui_panels:
         self.left_pnl.fill(self.color)
         window.blit(self.menu, menu_rect) 
 
+#=====================================================================================================================
+#===================== **DTO YUNG RIGHT PANEL** ======================================================================
+    def right_panel(self):
+        self.right_pnl_rect = self.right_pnl.get_rect(topleft=(x + 824, y))
+        
+        
+        self.settings = pg.transform.scale(self.settings, (100, 75))
+        self.settings_rect = self.settings.get_rect(topleft=(x + 950, y - 15))
+        
+        self.user = pg.transform.scale(self.user, (100, 75))
+        self.user_rect = self.user.get_rect(topleft=(x + 920, y - 13)) 
+        
+        order_summ_rect = self.order_summ.get_rect(topleft=(x + 835, y + 170))
+        pg.draw.rect(window, self.container_color, order_summ_rect, border_radius=20)
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 #=====================================================================================================================
 #=====================**DTO MAG LO-LLOAD NG MGA IMAGE FOR ITEMS**=====================================================
     def items(self, category=None):
@@ -254,7 +278,7 @@ class ui_panels:
         y_offset = 150
         item_w = 60
         item_h = 60
-        x = 25
+        x = 20
         
         
         
@@ -317,32 +341,28 @@ class ui_panels:
 
         if self.scroll_y >= 0:
             self.scroll_y = 0
-            
+
 #======================================================================================================================
-#=====================SO IN CONCLUSION GINAYA KO LANG YUNG SAYO, MAY MGA NA-DAGDAG LANG NA VARIABLES AND NA IBA========
+#======== **DTO MAG LALAGAY SA NG MGA I-D-DRAW SA WINDOW** ============================================================
     def draw(self):
         
-        # window.blit(self.left_pnl, (x, y + 65))
-        window.blit(self.right_pnl, (x + 824, y))
+        window.blit(self.right_pnl, self.right_pnl_rect)
+        window.blit(self.settings, self.settings_rect)
+        window.blit(self.user, self.user_rect)
 
+        pg.draw.rect(window, self.btn_color, self.pay_btn_rect, border_radius=20)
+        self.pay_text = self.medium_font.render("Pay", True, "#ffffff")
+        self.pay_text_rect = self.pay_text.get_rect(center=(self.pay_btn_rect.x + 90, self.pay_btn_rect.y + 20))
+        window.blit(self.pay_text, self.pay_text_rect)
+
+        pg.draw.rect(window, self.btn_color, self.view_cart_btn_rect, border_radius=20)
+        self.view_cart_text = self.medium_font.render("View Cart", True, "#ffffff")      
+        self.view_cart_text_rect = self.view_cart_text.get_rect(center=(self.view_cart_btn_rect.x + 90, self.view_cart_btn_rect.y + 20))
+        window.blit(self.view_cart_text, self.view_cart_text_rect)
+        
         pg.draw.rect(window, self.s_color, self.input_rect, border_radius=20)
         search_surf = self.small_font.render(self.search_text, True, (255, 255, 255))
         window.blit(search_surf, (self.input_rect.x + 10, self.input_rect.y + 10))
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
 #======================================================================================================================
@@ -373,6 +393,7 @@ while True:
     panel.draw_header()
     panel.left_panel()
     panel.menu_btn()
+    panel.right_panel()
     panel.items(panel.selected_category)
     panel.left_item_category()
     # panel.view_cart()
