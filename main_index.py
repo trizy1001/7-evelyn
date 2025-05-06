@@ -278,7 +278,6 @@ class ui_panels:
                 pass
             
             window.blit(category_box, (x, y_offset))
-
             text = self.medium_font.render(item['name'], True, (255, 255, 255))
             text.set_alpha(self.frame_motion)
             window.blit(text, (100, y_offset + 14))
